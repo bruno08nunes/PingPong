@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ResetScore();
+
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -21,6 +23,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             SceneManager.LoadScene("Menu");
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
