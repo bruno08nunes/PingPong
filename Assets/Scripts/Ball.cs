@@ -4,6 +4,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float randomForce;
 
     Rigidbody2D rb;
 
@@ -12,12 +13,6 @@ public class Ball : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(nameof(StartMove));
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        
     }
 
     public void ResetPosition()
@@ -34,5 +29,11 @@ public class Ball : MonoBehaviour
         float horizontalSpeed = Random.Range(0, 2) == 0 ? speed : -speed;
         float verticalSpeed = Random.Range(0, 2) == 0 ? speed : -speed;
         rb.linearVelocity = new Vector2(horizontalSpeed, verticalSpeed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Isso é para prevenir a bolinha de ficar em um loop infinito
+        rb.linearVelocity += new Vector2(randomForce, randomForce);
     }
 }
