@@ -5,11 +5,13 @@ public class Goal : MonoBehaviour
     [SerializeField] bool playerOneScored;
 
     GameManager gameManager;
+    Ball ball;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        ball = GameObject.Find("Ball").GetComponent<Ball>();
     }
 
     // Update is called once per frame
@@ -21,5 +23,6 @@ public class Goal : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         gameManager.IncrementPlayerScore(playerOneScored);
+        ball.ResetPosition();
     }
 }
