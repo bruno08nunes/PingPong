@@ -7,11 +7,15 @@ public class Goal : MonoBehaviour
     GameManager gameManager;
     Ball ball;
 
+    AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         ball = GameObject.Find("Ball").GetComponent<Ball>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,5 +28,6 @@ public class Goal : MonoBehaviour
     {
         gameManager.IncrementPlayerScore(playerOneScored);
         ball.ResetPosition();
+        audioSource.Play();
     }
 }

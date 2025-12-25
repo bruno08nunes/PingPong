@@ -7,11 +7,13 @@ public class Ball : MonoBehaviour
     [SerializeField] float randomForce;
 
     Rigidbody2D rb;
+    AudioSource audioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(nameof(StartMove));
     }
 
@@ -35,5 +37,6 @@ public class Ball : MonoBehaviour
     {
         // Isso é para prevenir a bolinha de ficar em um loop infinito
         rb.linearVelocity += new Vector2(randomForce, randomForce);
+        audioSource.Play();
     }
 }
